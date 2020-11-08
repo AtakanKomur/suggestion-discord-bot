@@ -1,10 +1,10 @@
 {
-    "token": "bottokenhere",
     "prefix": "/",
     "botName": "Suggest",
     "color": "#ff4dd2",
     "yes": "✅",
     "no": "❌",
-    "logo": "https://cdn.discordapp.com/attachments/314048185859309569/775084392195817482/OIP.png",
-    "developerName": "Atakan#0037"
+    "logo": "https://cdn.discordapp.com/attachments/726776583767064609/775096211882901504/su.jpg",
+    "developer": "Atakan#0037",
+    "dcjs": "12.4.1"
 }
