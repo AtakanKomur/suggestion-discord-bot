@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const config = require("./configs/config.json");
+const config = require("./config.json");
 
 const fs = require("fs")
 
@@ -17,14 +17,14 @@ fs.readdir("./commands/", (err, files) => {
   var jsFiles = files.filter(f => f.split(".").pop() === "js");
 
   if (jsFiles.length <= 0) {
-    console.log("Commands ->   『❌』 Niks gevonden");
+    console.log("Commands -> 『❌』 Niks gevonden");
     return;
   }
 
   jsFiles.forEach((f, i) => {
 
     var fileGet = require(`./commands/${f}`);
-    console.log(`Commands ->   『✅』 ${f} loaded`)
+    console.log(`Commands -> 『✅』 ${f} loaded`)
 
     client.commands.set(fileGet.help.name, fileGet);
 

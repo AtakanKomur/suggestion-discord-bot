@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AtakanKomur/suggestion-discord-bot#readme",
   "dependencies": {
-    "discord.js": "^12.4.1"
+    "discord.js": "^12.4.1",
+    "fs": "0.0.1-security"
   }
 }
