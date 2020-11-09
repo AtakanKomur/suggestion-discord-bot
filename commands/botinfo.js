@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
                 value: client.guilds.cache.size,
                 inline: true
             }, {
-                name: "Gemaakt op:",
+                name: "Bot created at:",
                 value: client.user.createdAt.toDateString(),
                 inline: true
             }, {
