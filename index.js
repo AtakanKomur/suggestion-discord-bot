@@ -32,6 +32,24 @@ fs.readdir("./commands/", (err, files) => {
 
 });
 
+client.on("guildCreate", guild => {
+  let found = 0;
+  guild.channels.cache.map((c) => {
+      if (found === 0) {
+        if (channel.type === "text") {
+          if (channel.permissionsFor(bot.user).has("VIEW_CHANNEL") === true) {
+            if (channel.permissionsFor(bot.user).has("SEND_MESSAGES") === true) {
+              channel.send(`Hello there! Do ${prefix}setup to setup the bot for your server!`);
+              
+              found = 1;
+            }
+          }
+        }
+      }
+    });
+ 
+})
+
 client.on("message", async message => {
 
   if (message.author.bot) return;
