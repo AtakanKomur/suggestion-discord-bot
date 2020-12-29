@@ -1,10 +1,9 @@
 {
+    "token": "Zet hier je discord bot token neer.",
     "prefix": "/",
-    "botName": "Suggest",
-    "color": "#ff4dd2",
+    "color": "#fffff",
     "yes": "✅",
     "no": "❌",
-    "logo": "https://cdn.discordapp.com/attachments/726776583767064609/775096211882901504/su.jpg",
-    "developer": "Atakan#0037",
-    "dcjs": "12.4.1"
+    "logo": "Je logo",
+    "developer": "Your name"
 }

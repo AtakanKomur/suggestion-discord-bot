@@ -1,54 +1,12 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
 
-const fs = require("fs")
-
 const client = new Discord.Client();
 client.commands = new Discord.Collection()
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
-
-fs.readdir("./commands/", (err, files) => {
-
-  if (err) console.log(err);
-
-  var jsFiles = files.filter(f => f.split(".").pop() === "js");
-
-  if (jsFiles.length <= 0) {
-    console.log("Commands -> 『❌』 Niks gevonden");
-    return;
-  }
-
-  jsFiles.forEach((f, i) => {
-
-    var fileGet = require(`./commands/${f}`);
-    console.log(`Commands -> 『✅』 ${f} loaded`)
-
-    client.commands.set(fileGet.help.name, fileGet);
-
-  })
-
-});
-
-client.on("guildCreate", guild => {
-  let found = 0;
-  guild.channels.cache.map((c) => {
-      if (found === 0) {
-        if (channel.type === "text") {
-          if (channel.permissionsFor(bot.user).has("VIEW_CHANNEL") === true) {
-            if (channel.permissionsFor(bot.user).has("SEND_MESSAGES") === true) {
-              channel.send(`Hello there! Do ${prefix}setup to setup the bot for your server!`);
-              
-              found = 1;
-            }
-          }
-        }
-      }
-    });
- 
-})
 
 client.on("message", async message => {
 
@@ -72,17 +30,39 @@ client.on("message", async message => {
 
 });
 
-client.on('message', msg => {
+// Hier begint je command
 
-  if (msg.content === `<@!${client.user.id}>`) {
+if (msg.content === `suggestie`) {
 
-    var tag = new Discord.MessageEmbed()
-      .setDescription(`:hand_splayed: | Hello there! my prefix is: \`${config.prefix}\``)
-      .setColor(config.color)
+  message.delete()
 
-    msg.channel.send(tag)
+  var embed1 = new discord.MessageEmbed() //Deze embed krijg je als je /suggestie doet!
+    .setDescription(`Doe dit als je een suggestie wilt indienen: ${config.prefix}suggestie (suggestie)!`)
+    .setColor(config.color)
+
+  if (!args.length) {
+    return message.channel.send(embed1).then(msg => {
+      msg.delete({
+        timeout: 5000
+      })
+    })
   }
 
-});
+  let channel = message.guild.channels.cache.find(channel => channel.name == "suggestions") //Pas deze channel naam aan naar je eigen channel name.
+  if (!channel) return message.channel.send("Er is geen channel genaamd suggestions.");// Deze melding krijg je als wat hier boven staat niet bestaat.
+
+  let embed = new discord.MessageEmbed() 
+    .setAuthor(message.author.tag, message.author.avatarURL()) 
+    .setThumbnail(message.author.avatarURL())
+    .setColor(config.color)
+    .setDescription(args.join(" "))
+    .setTimestamp()
+    .setFooter(`Aangevraagd door: ${message.author.tag}`, message.author.avatarURL())
+
+  channel.send(embed).then(m => {
+    m.react(config.yes)
+    m.react(config.no)
+  })
+}
 
 client.login(config.token)

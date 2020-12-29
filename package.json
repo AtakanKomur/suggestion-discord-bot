@@ -1,7 +1,7 @@
 {
   "name": "suggestion-discord-bot",
   "version": "1.0.0",
-  "description": "Poll Bot",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
